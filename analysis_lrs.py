@@ -10,19 +10,6 @@ class AnalysisLRS:
             self.data = file.read()
         self.data = self.data.split(" ")[0:L]
         self.data = [int(i) for i in self.data]
-        # print(self.data)
-
-    def create_matrix(self, begin):
-        end = begin + self.k - 1
-        self.mas = np.array(self.data[begin: end + 1])
-        i = 0
-        while begin + i < begin + self.k - 1:
-            i += 1
-            new_line = np.array(self.data[begin + i: end + 1 + i])
-            self.mas = np.vstack((self.mas, new_line))
-        print("===========================================")
-        print("\t\tГанкелева матрица\n", self.mas)
-        print("===========================================")
 
     @staticmethod
     def __to_list(data):
@@ -38,9 +25,6 @@ class AnalysisLRS:
         return val
 
     def calculate_Berle_Kemp(self):
-        print("===========================================")
-        print("Определитель Генкелевой матрицы: ", np.linalg.det(self.mas))
-        print("===========================================\n")
         m, l, N = list(), list(), int()
         m.append(1)
         l.append(0)
@@ -82,7 +66,8 @@ class AnalysisLRS:
                 l.append(l[t])
         degree = l[-1]
         polynom = self.__to_list(m[-1])[::-1]
-        print("Минимальный многочлен:")
+        print("\tАлгоритм Берликэмпа-Мэсси")
+        print("Минимальный многочлен: ")
         for i in range(0, len(polynom) - 1):
             if polynom[i] != 0:
                 print("x^{} + ".format(degree), end="")

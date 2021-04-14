@@ -38,8 +38,3 @@ class LinearRecurrentSequence:
             cnt = 1
             for num in res:
                 file.write("%s " % num)
-                # if cnt == 80:
-                #     file.write("\n")
-                #     cnt = 1
-                # else:
-                #     cnt += 1
